@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: Garment-Io
+  description: Description
+  version: 1.0.0
+servers:
+  #- url: ''
+  - url: 'http://localhost:8080'
+paths:
+
+  /batches:
+    post:
+      tags:
+        - Task
+      summary: Create Batch with number, color, size, quantity !
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createResponse'
+      responses:
+        200:
+          $ref: '#/components/responses/create'
+    get:
+      tags:
+        - Task
+      summary: get Batches
+      responses:
+        200:
+          $ref: '#/components/responses/getAllBatches'
+
+  /batches/{id}:
+    get:
+      tags:
+        - Task
+      summary: Get one batch !!!
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/getOneBatch'
+
+    put:
+      tags:
+        - Task
+      summary: Update Batch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createResponse'
+      responses:
+        200:
+          $ref: '#/components/responses/create'
+
+    delete:
+      tags:
+        - Task
+      summary: Delete Batch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/message'
+
+
+  /batches/count:
+    get:
+      tags:
+        - Task
+      summary: The total produced T-shirts of the same color and same size !
+      parameters:
+        - name: color
+          in: params
+          required: true
+          schema:
+            type: string
+        - name: size
+          in: params
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/count'
+
+
+
+components:
+  responses:
+    create:
+      description: Create Batch.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createResponse'
+
+    getAllBatches:
+      description: Get All Batches.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/getAllBatchesSchema'
+
+    getOneBatch:
+      description: Get One Batch.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/getOneBatch'
+
+    message:
+      description: Message.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/messageSchema'
+
+    count:
+      description: Create Batch.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createResponse'
+
+  schemas:
+    createResponse:
+      type: object
+      properties:
+        _id:
+          type: "string"
+          example: "601c558a6d5b375c14b4917d"
+        number:
+          type: "number"
+          example: "5"
+        color:
+          type: "string"
+          example: "red"
+        size:
+          type: "string"
+          example: "S"
+        quantity:
+          type: "number"
+          example: "100"
+    getAllBatchesSchema:
+      type: "array"
+      items:
+        type: object
+        properties:
+          _id:
+            type: "string"
+            example: "601c558a6d5b375c14b4917d"
+          number:
+            type: "number"
+            example: "9"
+          color:
+            type: "string"
+            example: "green"
+          size:
+            type: "string"
+            example: "XL"
+          quantity:
+            type: "number"
+            example: "100"
+          created_at:
+            type: "string"
+            example: "2021-02-04T20:14:02.745Z"
+          updated_at:
+            type: "string"
+            example: "2021-02-04T20:14:02.745Z"
+    getOneBatch:
+      type: object
+      properties:
+        _id:
+          type: "string"
+          example: "601c558a6d5b375c14b4917d"
+        number:
+          type: "number"
+          example: "5"
+        color:
+          type: "string"
+          example: "red"
+        size:
+          type: "string"
+          example: "S"
+        quantity:
+          type: "number"
+          example: "100"
+        created_at:
+          type: "string"
+          example: "2021-02-04T20:14:02.745Z"
+        updated_at:
+          type: "string"
+          example: "2021-02-04T20:14:02.745Z"
+    messageSchema:
+      type: object
+      properties:
+        message:
+          type: "string"
+          example: "Batch has been deleted"
+    countSchema:
+      type: object
+      properties:
+        totall:
+          type: "number"
+          example: "200"
+        color:
+          type: "string"
+          example: "red"
+        size:
+          type: "string"
+          example: "S"
