@@ -4,8 +4,7 @@ const validation = require('./validation');
 
 class BaseController {
   constructor(config) {
-    const { name, path, service, routes } = config;
-    this.name = name;
+    const {  path, service, routes } = config;
     this.path = path;
     this.service = service;
     this.routes = routes || [];
@@ -13,7 +12,6 @@ class BaseController {
 
 
   async beforeAction(ctx, next) {
-    _.set(ctx, '_locals.resource', this.name);
     _.set(ctx, 'validate', this.validate);
     return next();
   }
