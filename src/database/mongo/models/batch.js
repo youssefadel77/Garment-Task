@@ -9,4 +9,15 @@ const batchSchema = new Schema({
   quantity: { type: Number }
 });
 
+batchSchema.index({
+  size: 1,
+  color: 1
+});
+batchSchema.index({
+  size: 1
+});
+batchSchema.index({
+  color: 1
+});
+
 module.exports = mongoose.model('Batch', batchSchema);
