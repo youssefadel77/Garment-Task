@@ -1,0 +1,21 @@
+#version: '3'
+#
+#services:
+#  api:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    image: api
+#    ports:
+#      - 8080:8080
+#    container_name: api
+#    restart: unless-stopped
+#    environment:
+#      VIRTUAL_HOST: api.dev.yo-go.co
+#      LETSENCRYPT_HOST: api.dev.yo-go.co
+#      LETSENCRYPT_EMAIL: eng.falah@gmail.com
+#
+#networks:
+#  default:
+#    external:
+#      name: nginx-proxy

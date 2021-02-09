@@ -9,9 +9,6 @@ class BaseService {
     this.ValidationError = errors.ValidationError;
     this.NotFoundError = errors.NotFoundError;
   }
-  parseBoolean(value) {
-    return /true/i.test(value);
-  }
 }
 
 module.exports = BaseService;
